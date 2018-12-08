@@ -3,8 +3,7 @@ A language interpretation/recognition interface node.js application, in this cas
 
 # Features
 - Look up data from Spotify by song name:
-
-
+![](images\complete-program.png)
 # Requirements:
 - You will need a Spotify API key, and to create a .env file in which to store it in. like so:
 ```
