@@ -50,17 +50,33 @@ var getSpotifyData = function (songTitle, limit) {
     );
 };
 
-// main app driver
+// MAIN DRIVER
 
 // logic without inquirer: 
 //
-// read command
+// // read command
 // var query = process.argv[2];
 //
-// read data given
+// // read data given
 // var dataInput = process.argv.slice(3).join(' ');
 //
 // switch statement per command (if multiple), else, standalone function
+// ---------- End of Psuedocode ----------
+
+//------------------------------------------------------------------
+// to use data from random.txt, structure like so:
+//
+// var fs.readFile('random.txt', 'utf8', function(error, data){
+//   var extData = data.split(',');
+//   if (extData.length === 2){
+//      return extData[2];
+//   } else {
+//      return 'insufficient data';
+//   }
+// });
+//
+// then feed the data into the standalone function 'spotify-this-song'
+// ---------- End of Psuedocode ----------
 
 inquirer.prompt([
     {
@@ -72,7 +88,6 @@ inquirer.prompt([
 ]).then(function (response) {
     switch (response.query) {
         case 'spotify-this-song (Search for song by Name on Spotify)':
-            console.log('----------------------------------------------')
             inquirer.prompt([
                 {
                     type: 'input',
@@ -81,8 +96,8 @@ inquirer.prompt([
                 },
                 {
                     type: 'list',
-                    message: 'How many results?',
-                    choices: ['1', '5', '10', '25' , '50'],
+                    message: 'How many results?\n',
+                    choices: ['1', '5', '10', '25', '50'],
                     name: 'limit'
                 }
             ]).then(function (response) {
