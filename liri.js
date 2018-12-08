@@ -12,7 +12,7 @@ var spotify = new Spotify(keys.spotify);
 
 // functions
 var getSpotifyData = function (songTitle) {
-    
+
     spotify.search(
         {
             type: 'track',
@@ -26,18 +26,23 @@ var getSpotifyData = function (songTitle) {
             var songList = data.tracks.items;
 
             for (var i = 0; i < songList.length; i++) {
-            // console.log('Track ' + (i + 1) + ' of ' + songList.length);
-            //     console.log('Album: ');
 
-            // gets name of artist(s) from data
-            console.log('Artists: ' + songList[i].artists.map(function (artist) {
-                return artist.name;
-            }).join(', '));
-            
-            // console.log('Song Title: ' + songlist[i].artists.map(getArtist));
-            //     console.log('Artist(s): ');
-            //     console.log('Preview Link: ');
-            //     console.log();
+                console.log('\nResult ' + (i + 1) + ' of ' + songList.length + ':');
+
+                console.log('  Song Title: ' + songList[i].name);
+
+                if (songList[i].album.name) {
+                    console.log('  Album: ' + songList[i].album.name);
+                } else {
+                    console.log('  Album: not available')
+                }
+
+                // gets name of artist(s) from data
+                console.log('  Artists: ' + songList[i].artists.map(function (artist) {
+                    return artist.name;
+                }).join(', '));
+
+                console.log('  Preview Link: ' + songList[i].preview_url);
             };
         }
     );
