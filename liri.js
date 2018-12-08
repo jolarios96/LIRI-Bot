@@ -4,20 +4,25 @@ require("dotenv").config();
 // importing keys and packages
 var keys = require('./keys');
 var Spotify = require('node-spotify-api');
-var axios = require('axios');
-var moment = require('moment');
-var fs = require('fs');
+
+// currently unused
+// var axios = require('axios');
+// var moment = require('moment');
+// var fs = require('fs');
+
+// importing inquirer for ease of use and scalability
 var inquirer = require('inquirer');
 
 var spotify = new Spotify(keys.spotify);
 
 // functions
-var getSpotifyData = function (songTitle) {
+var getSpotifyData = function (songTitle, limit) {
 
     spotify.search(
         {
             type: 'track',
             query: songTitle,
+            limit: limit
         },
 
         function (err, data) {
@@ -61,21 +66,33 @@ inquirer.prompt([
     {
         type: 'list',
         message: 'Choose a function: ',
-        choices: ['spotify-this-song', 'Exit'],
+        choices: ['spotify-this-song (Search for song by Name on Spotify)', 'Exit'],
         name: 'query',
     },
 ]).then(function (response) {
     switch (response.query) {
-        case 'spotify-this-song':
+        case 'spotify-this-song (Search for song by Name on Spotify)':
+            console.log('----------------------------------------------')
             inquirer.prompt([
                 {
                     type: 'input',
                     message: 'Input a song!\n',
                     name: 'input'
+                },
+                {
+                    type: 'list',
+                    message: 'How many results?',
+                    choices: ['1', '5', '10', '25' , '50'],
+                    name: 'limit'
                 }
             ]).then(function (response) {
-                getSpotifyData(response.input);
-                console.log('Loading . . .')
+                if (!response.input) {
+                    console.log('No input.')
+                    return;
+                } else {
+                    getSpotifyData(response.input, response.limit);
+                    console.log('Loading . . .')
+                }
             });
             break;
 
