@@ -34,16 +34,12 @@ var getSpotifyData = function (songTitle, limit) {
             for (var i = 0; i < songList.length; i++) {
 
                 console.log('\nResult ' + (i + 1) + ' of ' + songList.length + ':');
-
                 console.log('  Song Title: ' + songList[i].name);
-
                 console.log('  Album: ' + songList[i].album.name);
-
                 // gets name of artist(s) from data
                 console.log('  Artists: ' + songList[i].artists.map(function (artist) {
                     return artist.name;
                 }).join(', '));
-
                 console.log('  Preview Link: ' + songList[i].preview_url);
             };
         }
