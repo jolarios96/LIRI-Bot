@@ -20,12 +20,14 @@ In this case we look up data from Spotify by song name:
 ![Screencap of a completed Song Search](images/complete-program.png)
 
 # Planned Features
-- concert-this: search the Bands in Town Artist Events API for an artist and render the following info:
+- concert-this:<br>
+Search the Bands in Town Artist Events API for an artist and render the following info:
   - Name of the Venue
   - Venue Location
   - Date/Time of the event (MM/DD/YYY)
 
-- movie-this: search a movie by name to grab various data and ratings via the OMDB API.
+- movie-this:<br>
+Search a movie by name to grab various data and ratings via the OMDB API.
   - title, release year, plot, actors, language, the country the movie was produced in.
   - get ratings from IMDB and Rotten Tomatoes
   
